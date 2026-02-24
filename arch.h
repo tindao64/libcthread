@@ -15,7 +15,7 @@ extern "C" {
 // Aligns stack_top suitably
 // `func` will not return, but please spin indefinitely as a last resort
 __attribute__((noreturn, noinline))
-void cthread_run_new_stack(void (*func)(), void *stack_top);
+void cthread_run_new_stack(void (*func)(void), void *stack_top);
 
 // Allocation
 
