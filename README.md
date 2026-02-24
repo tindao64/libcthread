@@ -17,3 +17,9 @@ GCC and similar compilers should be fine. These architectures will be supported:
 
 Port the things in arch.h if your platform isn't supported yet or the current support isn't OK.
 The builtins use weak linkage, so you are free to override.
+
+To set the maximum number of threads, define `size_t CTHREAD_MAX_THREADS` to your value somewhere,
+and set it before calling `cthread_init()`
+
+To set the stack size other than the default 32KiB, define `size_t CTHREAD_STACK_SIZE`, and set the value
+before calling `cthread_create`. Threads created before will not be affected. This is changeable dynamically for new threads.
