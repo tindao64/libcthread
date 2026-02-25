@@ -13,6 +13,13 @@ GCC and similar compilers should be fine. These architectures will be supported:
 - aarch64 AAPCS64 ABI
 - ARMv7E-M
 
+> [!WARNING]
+> At least on x86_64 Linux, this does NOT work with address sanitizer!
+> However, valgrind seems to work fine, although with some scary-looking warnings.
+> 
+> From my testing, it seems like asan plays fine on aarch64 Linux, but it might not be
+> true on all machines.
+
 ## Porting
 
 Port the things in arch.h if your platform isn't supported yet or the current support isn't OK.
