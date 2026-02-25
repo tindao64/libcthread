@@ -6,6 +6,7 @@
 #include <stddef.h>
 #include <errno.h>
 #include <assert.h>
+#include <string.h>
 
 struct cthread {
     jmp_buf context;
@@ -145,6 +146,8 @@ void cthread_init(void) {
         assert(!"Failed to allocate cthread_slots");
         abort();
     }
+
+    memset(cthread_slots, 0, cthread_max_threads * sizeof(struct cthread_slot));
 
     cthread_initialized = 1;
 }
