@@ -73,6 +73,7 @@ static void cthread_thread_trampoline(void) {
 static void cthread_cleanup_thread(struct cthread *thread) {
     assert(thread->id >= 0 && (size_t)thread->id < cthread_max_threads);
     cthread_slots[thread->id].in_use = 0;
+    cthread_free(thread->stack_bottom);
     memset(thread, 0, sizeof(struct cthread));
     assert(cthread_num_threads > 0);
     --cthread_num_threads;
