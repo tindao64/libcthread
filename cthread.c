@@ -214,6 +214,33 @@ void cthread_yield(void) {
     }
 }
 
+cthread_t cthread_get_current_thread(void) {
+    if (!cthread_current_thread) {
+        return -1;
+    }
+    return cthread_current_thread->id;
+}
+
+size_t cthread_get_num_threads(void) {
+    return cthread_num_threads;
+}
+
+void *cthread_get_arg(cthread_t id) {
+    if (id < 0 || (size_t)id >= cthread_max_threads || !cthread_slots[id].in_use) {
+        errno = EINVAL;
+        return NULL;
+    }
+    return cthread_slots[id].thread.arg;
+}
+
+void (*cthread_get_func(cthread_t id))(void *) {
+    if (id < 0 || (size_t)id >= cthread_max_threads || !cthread_slots[id].in_use) {
+        errno = EINVAL;
+        return NULL;
+    }
+    return cthread_slots[id].thread.func;
+}
+
 void cthread_exit(void) {
     if (!cthread_current_thread) {
         assert(!"cthread_exit called from outside of thread");

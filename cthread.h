@@ -23,6 +23,18 @@ int cthread_create(cthread_t *id, void (*func)(void *), void *arg);
 // If called from main thread, this will yield to a libcthread-managed thread
 void cthread_yield(void);
 
+// Get the `arg` pointer passed to a thread
+void *cthread_get_arg(cthread_t id);
+
+// Get the function pointer passed to a thread
+void (*cthread_get_func(cthread_t id))(void *);
+
+// Get the currently running thread's ID, or -1 if in main thread
+cthread_t cthread_get_current_thread(void);
+
+// Get the number of running threads
+size_t cthread_get_num_threads(void);
+
 // Terminates the calling thread
 // Undefined if called from outside of a libcthread-managed thread (e.g. main thread)
 void cthread_exit(void);
