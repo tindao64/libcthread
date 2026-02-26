@@ -11,7 +11,7 @@ Simply put the entire source tree where all the *.c files will get compiled, and
 GCC and similar compilers should be fine. These architectures will be supported:
 - x86_64 SysV ABI
 - aarch64 AAPCS64 ABI
-- ARMv7E-M
+- ARMv7-M
 
 > [!WARNING]
 > At least on x86_64 Linux, this does NOT work with address sanitizer!
